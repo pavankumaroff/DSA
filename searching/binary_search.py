@@ -1,19 +1,19 @@
 # binary search
 
 def binary_search(array, target):
-    left = 0
-    right = len(array) - 1
+    low = 0
+    high = len(array) - 1
 
-    while (left <= right):
-        mid = (left + right) // 2
+    while (low <= high):
+        mid = (low + high) // 2
 
         if (array[mid] == target):
             return mid
 
         if (array[mid] < target):
-            left = mid + 1
+            low = mid + 1
         else:
-            right = mid - 1
+            high = mid - 1
   
     return -1
 
