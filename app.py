@@ -12,6 +12,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.size = 0
 
     def addLast(self, item):
         node = Node(item)
@@ -20,6 +21,7 @@ class LinkedList:
         else:
             self.tail.next = node
             self.tail = node
+        self.size += 1
 
     def addFirst(self, item):
         node = Node(item)
@@ -28,6 +30,7 @@ class LinkedList:
         else:
             node.next = self.head
             self.head = node
+        self.size += 1
 
     def indexof(self, item):
         current = self.head
@@ -50,11 +53,11 @@ class LinkedList:
 
         if self.head == self.tail:
             self.head = self.tail = None
-            return
-
-        temp = self.head.next
-        self.head.next = None
-        self.head = temp
+        else:
+            temp = self.head.next
+            self.head.next = None
+            self.head = temp
+        self.size -= 1
 
     def removeLast(self):
         if not self.head:
@@ -62,17 +65,26 @@ class LinkedList:
 
         if self.head == self.tail:
             self.head = self.tail = None
-            return
+        else:
+            current = self.head
+            while current:
+                if current.next == self.tail:
+                    break
+                current = current.next
 
-        prevous = self.head
-        current = self.head.next
+            current.next = None
+            self.tail = current
+        self.size -= 1
 
-        while current.next:
-            prevous = current
+    def list(self):
+        items = [0] * self.size
+        index = 0
+        current = self.head
+        while current:
+            items[index] = current.value
             current = current.next
-        
-        prevous.next = None
-        self.tail = prevous
+            index += 1
+        return items
 
     def display(self):
         current = self.head
@@ -86,9 +98,11 @@ ll = LinkedList()
 ll.addLast(10)
 ll.addLast(20)
 ll.addLast(30)
-# ll.addFirst(40)
-# ll.addFirst(50)
-# ll.removeFirst()
+ll.addFirst(40)
+ll.addFirst(50)
+ll.removeFirst()
 ll.removeLast()
 
-ll.display()
+# print(ll.size)
+# ll.display()
+print(ll.list())
