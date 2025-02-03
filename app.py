@@ -1,4 +1,4 @@
-class invalidOperationError(Exception):
+class InvalidOperationError(Exception):
     pass
 
 
@@ -46,7 +46,7 @@ class LinkedList:
 
     def removeFirst(self):
         if not self.head:
-            raise invalidOperationError("linked list is empty")
+            raise InvalidOperationError("linked list is empty")
 
         if self.head == self.tail:
             self.head = self.tail = None
@@ -58,7 +58,7 @@ class LinkedList:
 
     def removeLast(self):
         if not self.head:
-            raise invalidOperationError("linked list is empty")
+            raise InvalidOperationError("linked list is empty")
 
         if self.head == self.tail:
             self.head = self.tail = None
