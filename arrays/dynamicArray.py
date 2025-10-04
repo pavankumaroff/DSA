@@ -9,7 +9,7 @@ class Array:
 
     def append(self, item):
         if len(self.__items) == self.__count:
-            newItems = [0] * len(self.__items) * 2
+            newItems = [0] * (self.__count * 2)
 
             for index, value in enumerate(self.__items):
                 newItems[index] = value
