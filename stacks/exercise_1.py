@@ -1,6 +1,4 @@
 # reversing a string using stack
-import io
-
 
 class String_Reverser:
     def reverse(self, input):
@@ -8,12 +6,12 @@ class String_Reverser:
         for char in input:
             stack.append(char)
 
-        buffer = io.StringIO()
+        reversed_string = ""
         while len(stack) != 0:
             char = stack.pop()
-            buffer.write(char)
+            reversed_string += char
 
-        return buffer.getvalue()
+        return reversed_string
 
 
 reverser = String_Reverser()
