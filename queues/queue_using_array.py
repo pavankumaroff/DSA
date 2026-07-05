@@ -10,7 +10,7 @@ class ArrayQueue:
 
     def enqueue(self, value):
         if self.isFull():
-            raise IndexError("Index out of range")
+            raise OverflowError("enqueue to a full queue")
 
         else:
             self.items[self.rear] = value
@@ -20,7 +20,7 @@ class ArrayQueue:
 
     def dequeue(self):
         if self.isEmpty():
-            raise ValueError("Invalid operation")
+            raise IndexError("dequeue from empty queue")
 
         item = self.items[self.front]
         self.items[self.front] = 0
@@ -30,25 +30,43 @@ class ArrayQueue:
 
         return item
 
+    def isPeak(self):
+        if self.isEmpty():
+            raise IndexError("peek from empty queue")
+
+        return self.items[self.front]
+
     def isEmpty(self):
         return self.count == 0
 
     def isFull(self):
         return self.count == len(self.items)
 
-    def isPeak(self):
-        return self.items[self.front]
+    def display(self):
+        if self.isEmpty():
+            print("Queue is empty")
+            return
+
+        index = self.front
+
+        for _ in range(self.count):
+            print(self.items[index], end=" ")
+            index = (index + 1) % len(self.items)
 
 
 queue = ArrayQueue(5)
 queue.enqueue(1)
 queue.enqueue(2)
-# queue.enqueue(3)
-# queue.enqueue(4)
+queue.enqueue(3)
+queue.enqueue(4)
 # queue.enqueue(5)
 # queue.enqueue(5)
+queue.dequeue()
+queue.dequeue()
 # queue.dequeue()
 # queue.dequeue()
-# queue.enqueue(5)
+queue.enqueue(12)
 
-print(queue)
+
+# print(queue)
+queue.display()
