@@ -12,11 +12,10 @@ class ArrayQueue:
         if self.isFull():
             raise OverflowError("enqueue to a full queue")
 
-        else:
-            self.items[self.rear] = value
-            self.rear = (self.rear + 1) % len(self.items)
+        self.items[self.rear] = value
+        self.rear = (self.rear + 1) % len(self.items)
 
-            self.count += 1
+        self.count += 1
 
     def dequeue(self):
         if self.isEmpty():

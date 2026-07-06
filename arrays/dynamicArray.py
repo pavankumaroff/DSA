@@ -1,6 +1,3 @@
-import math
-
-
 class Array:
     def __init__(self, length):
         self.__items = [0] * length
