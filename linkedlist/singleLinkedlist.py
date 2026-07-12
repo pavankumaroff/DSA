@@ -14,6 +14,12 @@ class LinkedList:
         self.tail = None
         self.size = 0
 
+    def __iter__(self):
+        current = self.head
+        while current:
+            yield current.value
+            current = current.next
+
     def addLast(self, item):
         node = Node(item)
         if not self.head:
@@ -60,6 +66,34 @@ class LinkedList:
             current.next = None
             self.tail = current
         self.size -= 1
+
+    def remove(self, item):
+        if not self.head:
+            raise InvalidOperationError("Linked list is empty")
+
+        # If the item is in the first node
+        if self.head.value == item:
+            self.removeFirst()
+            return
+
+        previous = self.head
+        current = self.head.next
+
+        while current:
+            if current.value == item:
+                previous.next = current.next
+
+                # If removing the last node
+                if current == self.tail:
+                    self.tail = previous
+
+                self.size -= 1
+                return
+
+            previous = current
+            current = current.next
+
+        raise InvalidOperationError(f"{item} not found")
 
     def indexof(self, item):
         current = self.head
@@ -127,17 +161,17 @@ class LinkedList:
         self.head = prev
 
 
-ll = LinkedList()
-ll.addLast(10)
-ll.addLast(20)
-ll.addLast(30)
-ll.addLast(40)
-ll.addLast(50)
-ll.addLast(60)
+# ll = LinkedList()
+# ll.addLast(10)
+# ll.addLast(20)
+# ll.addLast(30)
+# ll.addLast(40)
+# ll.addLast(50)
+# ll.addLast(60)
 # ll.reverse()
 # print(ll.size)
 # ll.display()
-print(ll.get_kth_from_the_end(11))
+# print(ll.get_kth_from_the_end(11))
 # print(ll.list())
 
 # 100        101        102
